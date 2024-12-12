@@ -14,7 +14,7 @@ The goal of magictrailz4r is to …
 - [ ] Consider adding a function for user_properties
 - [x] Function for building session_id
   - [ ] add tests with test data
-- [ ] Function for fixing timestamp
+- [x] Function for fixing timestamp
 - [ ] Other function for visualization
 - [ ] Add mock data to the package
 
