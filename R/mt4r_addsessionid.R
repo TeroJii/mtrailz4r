@@ -40,5 +40,5 @@ mt4r_addsessionid <- function(dat){
   return(has_session_id)
 }
 
-# Supress "Undefined global functions or variables" R CMD check note
+# Suppress "Undefined global functions or variables" R CMD check note
 event_params.key <- event_params.value.int_value <- row_id <- session_id <- NULL
