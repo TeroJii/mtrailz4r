@@ -45,3 +45,6 @@ mt4r_fixtime <- function(dat){
 
   return(fixed_dat)
 }
+
+# Suppress "Undefined global functions or variables" R CMD check note
+event_params.value.double_value <- event_timestamp <- NULL
