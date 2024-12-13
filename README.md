@@ -11,11 +11,13 @@ The goal of magictrailz4r is to …
 ## TO-DO
 
 - [x] Add a function to unnest json data
+  - [ ] add tests with test data
 - [ ] Consider adding a function for user_properties
 - [x] Function for building session_id
   - [ ] add tests with test data
 - [x] Function for fixing timestamp
-- [ ] Other function for visualization
+  - [ ] add tests with test data
+- [ ] Other functions for visualization
 - [ ] Add mock data to the package
 
 ## Installation
