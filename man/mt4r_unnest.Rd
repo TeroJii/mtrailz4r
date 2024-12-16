@@ -18,5 +18,11 @@ Data exported from Firebase is in json format. This function unnests the
 json data.
 }
 \examples{
-# To be added
+# Example data before and after unnesting
+mockdata |>
+ dim()
+
+mockdata |>
+  mt4r_unnest() |>
+  dim()
 }

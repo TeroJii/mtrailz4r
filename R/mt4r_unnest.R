@@ -10,7 +10,13 @@
 #' @export
 #'
 #' @examples
-#' # To be added
+#' # Example data before and after unnesting
+#' mockdata |>
+#'  dim()
+#'
+#' mockdata |>
+#'   mt4r_unnest() |>
+#'   dim()
 mt4r_unnest <- function(dat){
 
   stopifnot(is.data.frame(dat))
