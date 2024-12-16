@@ -19,6 +19,9 @@ The goal of magictrailz4r is to …
   - [ ] add tests with test data
 - [ ] Other functions for visualization
 - [ ] Add mock data to the package
+- [x] Add a script to prepare mock data
+  - [x] check that mock data is ok
+  - [ ] add tests with test data
 
 ## Installation
 
