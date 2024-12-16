@@ -11,3 +11,7 @@ test_that("incorrectly formatted data.frame errors", {
 test_that("non-data.frame produces an error", {
   expect_error(mt4r_unnest(1:4))
 })
+
+test_that("correctly formatted data.frame does not error", {
+  expect_silent(mt4r_unnest(mockdata))
+})
