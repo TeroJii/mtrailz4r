@@ -20,8 +20,7 @@ mt4r_addsessionid <- function(dat){
       "event_date" %in% colnames(dat) &&
       "event_params.value.int_value" %in% colnames(dat)
     )
-  stopifnot("Column named row_id not found. Please run mt4r_unnest() on your
-            data before using mt4r_addsessionid()", "row_id" %in% colnames(dat))
+  stopifnot("row_id" %in% colnames(dat))
 
   # Adding session_id
   has_session_id <- dat |>
