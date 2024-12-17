@@ -15,3 +15,24 @@ test_that("non-data.frame produces an error", {
 test_that("correctly formatted data.frame does not error", {
   expect_silent(mt4r_unnest(mockdata))
 })
+
+test_that("correctly formatted data.frame has correct dimensions", {
+  expect_equal(
+    mt4r_unnest(mockdata) |>
+      dim(),
+    c(357, 10)
+  )
+})
+
+unnested_mocknames <- c("row_id", "event_date", "event_timestamp", "event_name",
+               "event_params.key", "event_params.value.string_value",
+               "event_params.value.int_value", "event_params.value.float_value",
+               "event_params.value.double_value", "user_pseudo_id")
+
+test_that("correctly formatted data.frame has correct column names", {
+  expect_equal(
+    mt4r_unnest(mockdata) |>
+      colnames(),
+    unnested_mocknames
+  )
+})
