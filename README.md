@@ -3,6 +3,8 @@
 
 # magictrailz4r
 
+Consider “mtrailz4r” as a working title for now.
+
 <!-- badges: start -->
 <!-- badges: end -->
 
@@ -11,10 +13,10 @@ The goal of magictrailz4r is to …
 ## TO-DO
 
 - [x] Add a function to unnest json data
-  - [ ] add tests with test data
+  - [x] add tests with test data
 - [ ] Consider adding a function for user_properties
 - [x] Function for building session_id
-  - [ ] add tests with test data
+  - [x] add tests with test data
 - [x] Function for fixing timestamp
   - [ ] add tests with test data
 - [ ] Other functions for visualization
@@ -22,6 +24,7 @@ The goal of magictrailz4r is to …
 - [x] Add a script to prepare mock data
   - [x] check that mock data is ok
   - [ ] add tests with test data
+- [ ] Bump up version number
 
 ## Installation
 
