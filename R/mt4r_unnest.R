@@ -33,4 +33,4 @@ mt4r_unnest <- function(dat){
 }
 
 # Supress "Undefined global functions or variables" R CMD check note
-event_date <- event_params <- user_properties <- NULL
+event_date <- event_params <- user_properties <- event_params.value <- NULL
