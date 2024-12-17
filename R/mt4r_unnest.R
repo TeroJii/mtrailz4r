@@ -26,7 +26,8 @@ mt4r_unnest <- function(dat){
   unnested <- dat |>
     dplyr::mutate(row_id = dplyr::row_number(), .before = event_date) |>
     dplyr::select(-user_properties) |>
-    tidyr::unnest(cols = c(event_params), keep_empty = TRUE, names_sep = ".")
+    tidyr::unnest(cols = c(event_params), keep_empty = TRUE, names_sep = ".") |>
+    tidyr::unnest(cols = c(event_params.value), keep_empty = TRUE, names_sep = ".")
 
   return(unnested)
 }
