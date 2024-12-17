@@ -19,3 +19,24 @@ test_that("correctly formatted data.frame does not error", {
       mt4r_addsessionid()
   })
 })
+
+test_that("Session id does not contain NA values", {
+  expect_false(object = {
+    test_dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_addsessionid()
+
+    anyNA(test_dat$session_id)
+  }
+  )
+})
+
+test_that("We get an error if session_id is already present", {
+  expect_warning(object = {
+    mockdata |>
+      mt4r_unnest() |>
+      mt4r_addsessionid() |>
+      mt4r_addsessionid()
+  }
+  )
+})
