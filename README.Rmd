@@ -30,9 +30,9 @@ The goal of magictrailz4r is to ...
 - [x] Function for building session_id
   - [x] add tests with test data
 - [x] Function for fixing timestamp
-  - [ ] add tests with test data
+  - [x] add tests with test data
 - [ ] Other functions for visualization
-- [ ] Add mock data to the package
+- [x] Add mock data to the package
 - [x] Add a script to prepare mock data
   - [x] check that mock data is ok
   - [ ] add tests with test data
