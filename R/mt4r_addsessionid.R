@@ -21,6 +21,11 @@ mt4r_addsessionid <- function(dat){
       "event_params.value.int_value" %in% colnames(dat)
     )
   stopifnot("row_id" %in% colnames(dat))
+  #warn if session_id already exists
+  if("session_id" %in% colnames(dat)){
+    warning("Column with the name 'session_id' already exists.
+            Function will overwrite the existing column.")
+  }
 
   # Adding session_id
   has_session_id <- dat |>
