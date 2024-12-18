@@ -1,18 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# magictrailz4r
+# mtrailz4r
 
 Consider “mtrailz4r” as a working title for now.
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/TeroJii/magictrailz4r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TeroJii/magictrailz4r/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/TeroJii/mtrailz4r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TeroJii/mtrailz4r/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/TeroJii/magictrailz4r/branch/main/graph/badge.svg)](https://app.codecov.io/gh/TeroJii/magictrailz4r?branch=main)
+coverage](https://codecov.io/gh/TeroJii/mtrailz4r/branch/main/graph/badge.svg)](https://app.codecov.io/gh/TeroJii/mtrailz4r?branch=main)
 <!-- badges: end -->
 
-The goal of magictrailz4r is to …
+The goal of mtrailz4r is to …
 
 ## TO-DO
 
@@ -33,12 +33,12 @@ The goal of magictrailz4r is to …
 
 ## Installation
 
-You can install the development version of magictrailz4r from
+You can install the development version of mtrailz4r from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("TeroJii/magictrailz4r")
+devtools::install_github("TeroJii/mtrailz4r")
 ```
 
 ## Example
@@ -46,7 +46,7 @@ devtools::install_github("TeroJii/magictrailz4r")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(magictrailz4r)
+library(mtrailz4r)
 ## basic example code
 ```
 
