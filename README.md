@@ -30,6 +30,7 @@ The goal of mtrailz4r is to …
   - [ ] add tests with test data
 - [ ] Bump up version number
 - [x] Add CI/CD to automate R CMD check
+- [x] Test codecov
 
 ## Installation
 
