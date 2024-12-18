@@ -6,6 +6,8 @@
 Consider “mtrailz4r” as a working title for now.
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/TeroJii/magictrailz4r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TeroJii/magictrailz4r/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of magictrailz4r is to …
@@ -25,6 +27,7 @@ The goal of magictrailz4r is to …
   - [x] check that mock data is ok
   - [ ] add tests with test data
 - [ ] Bump up version number
+- [x] Add CI/CD to automate R CMD check
 
 ## Installation
 
