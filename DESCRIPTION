@@ -1,5 +1,5 @@
-Package: magictrailz4r
-Title: Wrangle data from MagicTrailz
+Package: mtrailz4r
+Title: Wrangle data from MTrailz
 Version: 0.0.0.9000
 Authors@R: 
     person("Tero", "Jalkanen", , "first.last@example.com", role = c("aut", "cre"),

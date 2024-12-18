@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(magictrailz4r)
+library(mtrailz4r)
 
-test_check("magictrailz4r")
+test_check("mtrailz4r")
