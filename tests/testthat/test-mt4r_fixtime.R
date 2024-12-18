@@ -1,10 +1,15 @@
-df <- data.frame(
-  x = c(1, 2, 3),
-  y = c(4, 5, 6)
-)
 
 test_that("incorrectly formatted data.frame errors", {
-  expect_error(mt4r_fixtime(df))
+  expect_error(
+    object = {
+      df <- data.frame(
+        x = c(1, 2, 3),
+        y = c(4, 5, 6)
+      )
+
+      mt4r_fixtime(df)
+      }
+    )
 })
 
 
