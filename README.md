@@ -23,7 +23,8 @@ The goal of mtrailz4r is to help with specific data processing steps…
   - [x] add tests with test data
 - [x] Function for fixing timestamp
   - [x] add tests with test data
-- [ ] Other functions for visualization
+- [ ] Add functions for visualization
+  - [x] Function for plotting most popular routes
 - [x] Add mock data to the package
 - [x] Add a script to prepare mock data
   - [x] check that mock data is ok
