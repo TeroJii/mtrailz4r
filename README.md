@@ -19,7 +19,7 @@ The goal of mtrailz4r is to help with specific data processing steps…
 - [ ] Consider adding a function for extracting user_properties
 - [ ] Add functions for visualization
   - [x] Function for plotting most popular routes
-  - [ ] Function for plotting time spent
+  - [x] Function for plotting time spent
 
 ## Installation
 
@@ -46,4 +46,13 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(mtrailz4r)
 ## basic example code
+mockdata |> 
+  mt4r_unnest() |> 
+  mt4r_fixtime() |> 
+  mt4r_addsessionid() |> 
+  plot_exertime()
+#> Don't know how to automatically pick scale for object of type <difftime>.
+#> Defaulting to continuous.
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
