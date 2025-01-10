@@ -33,18 +33,7 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
   time_units <- match.arg(time_units)
 
   dat |>
-    dplyr::group_by(session_id) |>
-    dplyr::summarize(
-      min_time = min(event_timestamp2, na.rm = TRUE),
-      max_time = max(event_timestamp2, na.rm = TRUE)
-    ) |>
-    dplyr::mutate(
-      time_spent = difftime(
-        max_time,
-        min_time,
-        units = time_units
-      )
-    ) |>
+    calculate_time_spent() |>
     ggplot2::ggplot(ggplot2::aes(x = time_spent)) +
     ggplot2::geom_hline(yintercept = 0, color = "lightgray", linewidth = 0.5) +
     ggplot2::geom_histogram(
@@ -57,6 +46,26 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
       title = "Time spent on the app per session id",
       x = paste0("Time spent (", time_units, ")"),
       y = "Number of sessions"
+    )
+}
+
+
+calculate_time_spent <- function(dat){
+  stopifnot(is.data.frame(dat))
+  stopifnot(all(c("session_id", "event_timestamp2") %in% names(dat)))
+
+  dat |>
+    dplyr::group_by(session_id) |>
+    dplyr::summarize(
+      min_time = min(event_timestamp2, na.rm = TRUE),
+      max_time = max(event_timestamp2, na.rm = TRUE)
+    ) |>
+    dplyr::mutate(
+      time_spent = difftime(
+        max_time,
+        min_time,
+        units = "secs"
+      )
     )
 }
 
