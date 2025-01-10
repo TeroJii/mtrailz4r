@@ -15,6 +15,11 @@
 #' @export
 #'
 #' @examples
+#' mockdata |>
+#'   mt4r_unnest() |>
+#'   mt4r_fixtime() |>
+#'   mt4r_addsessionid() |>
+#'   plot_exertime()
 plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
                           col_fill = "#99ff99",
                           col_color = "gray", alpha_val = 0.9){
@@ -56,4 +61,4 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
 }
 
 # Suppress "Undefined global functions or variables" R CMD check note
-event_timestamp2 <- time_spent <- NULL
+event_timestamp2 <- time_spent <- max_time <- min_time <- NULL
