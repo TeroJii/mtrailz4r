@@ -61,3 +61,23 @@ test_that("erraneous time_units returns an error", {
                  mt4r_addsessionid() |>
                  plot_exertime(time_units = "days"))
 })
+
+test_that("calculate_time_spent returns same amount of observations as the number of session_id's in the input data.frame", {
+  expect_equal(object = mockdata |>
+                 mt4r_unnest() |>
+                 mt4r_fixtime() |>
+                 mt4r_addsessionid() |>
+                 calculate_time_spent() |>
+                 nrow(),
+               expected = {
+                 dat <-  mockdata |>
+                   mt4r_unnest() |>
+                   mt4r_fixtime() |>
+                   mt4r_addsessionid()
+
+                 dat$session_id |>
+                   unique() |>
+                   length()
+                 }
+               )
+})
