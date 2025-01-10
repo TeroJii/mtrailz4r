@@ -32,3 +32,6 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
       y = "Number of sessions"
     )
 }
+
+# Suppress "Undefined global functions or variables" R CMD check note
+event_timestamp2 <- time_spent <- NULL
