@@ -1,10 +1,13 @@
-plot_exertime <- function(dat, time_units = "mins", col_fill = "#99ff99",
+plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
+                          col_fill = "#99ff99",
                           col_color = "gray", alpha_val = 0.9){
 
   stopifnot(is.data.frame(dat))
   stopifnot(is.character(col_fill) &&is.character(col_color))
   stopifnot(is.numeric(alpha_val))
   stopifnot(alpha_val >= 0 && alpha_val <= 1)
+
+  time_units <- match.arg(time_units)
 
   dat |>
     dplyr::group_by(session_id) |>
