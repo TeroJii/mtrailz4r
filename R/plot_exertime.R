@@ -1,8 +1,26 @@
+#' Plot time spent on app
+#'
+#'  This convenience function plots the time spent on the app per session id.
+#'
+#' @param dat A data frame with columns `session_id` and `event_timestamp2`
+#' @param time_units a character string specifying the time units to use
+#' c("mins", "secs", "hours","auto")
+#' @param col_fill a character string specifying the fill color
+#' @param col_color a character string specifying the color of the histogram bar
+#' outlines
+#' @param alpha_val transparency of the histogram bars. Numeric value between 0
+#' and 1
+#'
+#' @returns a ggplot object
+#' @export
+#'
+#' @examples
 plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
                           col_fill = "#99ff99",
                           col_color = "gray", alpha_val = 0.9){
 
   stopifnot(is.data.frame(dat))
+  stopifnot(all(c("session_id", "event_timestamp2") %in% names(dat)))
   stopifnot(is.character(col_fill) &&is.character(col_color))
   stopifnot(is.numeric(alpha_val))
   stopifnot(alpha_val >= 0 && alpha_val <= 1)
@@ -11,10 +29,14 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
 
   dat |>
     dplyr::group_by(session_id) |>
+    dplyr::summarize(
+      min_time = min(event_timestamp2, na.rm = TRUE),
+      max_time = max(event_timestamp2, na.rm = TRUE)
+    ) |>
     dplyr::mutate(
       time_spent = difftime(
-        max(event_timestamp2, na.rm = TRUE),
-        min(event_timestamp2, na.rm = TRUE),
+        max_time,
+        min_time,
         units = time_units
       )
     ) |>
