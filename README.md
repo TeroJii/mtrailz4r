@@ -16,22 +16,10 @@ The goal of mtrailz4r is to help with specific data processing steps…
 
 ## TO-DO
 
-- [x] Add a function to unnest json data
-  - [x] add tests with test data
-- [ ] Consider adding a function for user_properties
-- [x] Function for building session_id
-  - [x] add tests with test data
-- [x] Function for fixing timestamp
-  - [x] add tests with test data
+- [ ] Consider adding a function for extracting user_properties
 - [ ] Add functions for visualization
   - [x] Function for plotting most popular routes
-- [x] Add mock data to the package
-- [x] Add a script to prepare mock data
-  - [x] check that mock data is ok
-  - [ ] add tests with test data
-- [x] Bump up version number
-- [x] Add CI/CD to automate R CMD check
-- [x] Test codecov
+  - [ ] Function for plotting time spent
 
 ## Installation
 
@@ -39,8 +27,16 @@ You can install the development version of mtrailz4r from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("TeroJii/mtrailz4r")
+# install.packages("remotes")
+remotes::install_github(repo = "TeroJii/mtrailz4r")
+```
+
+Use the release tags to install a specific version. For example to
+install version 0.0.2:
+
+``` r
+# install.packages("remotes")
+remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.2")
 ```
 
 ## Example
