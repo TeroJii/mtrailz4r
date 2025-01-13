@@ -90,3 +90,38 @@ test_that("calculate_time_spent errors if time_units is not one of c(\"auto\", \
                  calculate_time_spent(time_units = "years")
   )
 })
+
+test_that("calculate_time_spent returns expected time differences", {
+  test_data <- data.frame(
+    session_id = c(1, 1, 2, 2),
+    event_timestamp2 = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:30",
+                                    "2021-01-01 00:00:00", "2021-01-01 00:01:00"))
+    )
+
+  expected_data <- data.frame(
+    session_id = c(1, 2),
+    min_time = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:00")),
+    max_time = as.POSIXct(c("2021-01-01 00:00:30", "2021-01-01 00:01:00"))
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "secs") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(30, 60),
+        time_units = "secs"
+      )
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "mins") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(0.5, 1),
+        time_units = "mins"
+      )
+  )
+
+})
