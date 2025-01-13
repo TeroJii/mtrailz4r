@@ -81,3 +81,12 @@ test_that("calculate_time_spent returns same amount of observations as the numbe
                  }
                )
 })
+
+test_that("calculate_time_spent errors if time_units is not one of c(\"auto\", \"secs\", \"mins\", \"hours\",\"days\", \"weeks\")", {
+  expect_error(mockdata |>
+                 mt4r_unnest() |>
+                 mt4r_fixtime() |>
+                 mt4r_addsessionid() |>
+                 calculate_time_spent(time_units = "years")
+  )
+})
