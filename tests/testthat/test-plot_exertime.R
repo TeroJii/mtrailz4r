@@ -67,7 +67,7 @@ test_that("calculate_time_spent returns same amount of observations as the numbe
                  mt4r_unnest() |>
                  mt4r_fixtime() |>
                  mt4r_addsessionid() |>
-                 calculate_time_spent() |>
+                 calculate_time_spent(time_units = "mins") |>
                  nrow(),
                expected = {
                  dat <-  mockdata |>
