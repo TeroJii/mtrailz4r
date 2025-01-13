@@ -125,3 +125,29 @@ test_that("calculate_time_spent returns expected time differences", {
   )
 
 })
+
+
+test_that("calculate_time_spent returns expected time differences vol 2", {
+  test_data <- data.frame(
+    session_id = c(1, 1, 2, 2),
+    event_timestamp2 = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 01:00:00",
+                                    "2021-01-01 00:00:00", "2021-01-01 00:30:00"))
+  )
+
+  expected_data <- data.frame(
+    session_id = c(1, 2),
+    min_time = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:00")),
+    max_time = as.POSIXct(c("2021-01-01 01:00:00", "2021-01-01 00:30:00"))
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "hours") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(1, 0.5),
+        time_units = "hours"
+      )
+  )
+
+})
