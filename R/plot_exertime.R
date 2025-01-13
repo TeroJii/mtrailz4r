@@ -65,7 +65,11 @@ calculate_time_spent <- function(dat, time_units) {
         max_time,
         min_time,
         units = time_units
-      )
+      ),
+      time_units = units(time_spent)
+    ) |>
+    dplyr::mutate(
+      time_spent = as.numeric(time_spent)
     )
 }
 
