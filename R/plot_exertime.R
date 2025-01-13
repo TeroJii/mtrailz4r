@@ -33,7 +33,7 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
   time_units <- match.arg(time_units)
 
   dat |>
-    calculate_time_spent() |>
+    calculate_time_spent(time_units = time_units) |>
     ggplot2::ggplot(ggplot2::aes(x = time_spent)) +
     ggplot2::geom_hline(yintercept = 0, color = "lightgray", linewidth = 0.5) +
     ggplot2::geom_histogram(
@@ -50,7 +50,7 @@ plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
 }
 
 
-calculate_time_spent <- function(dat){
+calculate_time_spent <- function(dat, time_units) {
   stopifnot(is.data.frame(dat))
   stopifnot(all(c("session_id", "event_timestamp2") %in% names(dat)))
 
@@ -64,8 +64,12 @@ calculate_time_spent <- function(dat){
       time_spent = difftime(
         max_time,
         min_time,
-        units = "secs"
-      )
+        units = time_units
+      ),
+      time_units = units(time_spent)
+    ) |>
+    dplyr::mutate(
+      time_spent = as.numeric(time_spent)
     )
 }
 

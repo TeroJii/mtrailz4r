@@ -67,7 +67,7 @@ test_that("calculate_time_spent returns same amount of observations as the numbe
                  mt4r_unnest() |>
                  mt4r_fixtime() |>
                  mt4r_addsessionid() |>
-                 calculate_time_spent() |>
+                 calculate_time_spent(time_units = "mins") |>
                  nrow(),
                expected = {
                  dat <-  mockdata |>
@@ -80,4 +80,74 @@ test_that("calculate_time_spent returns same amount of observations as the numbe
                    length()
                  }
                )
+})
+
+test_that("calculate_time_spent errors if time_units is not one of c(\"auto\", \"secs\", \"mins\", \"hours\",\"days\", \"weeks\")", {
+  expect_error(mockdata |>
+                 mt4r_unnest() |>
+                 mt4r_fixtime() |>
+                 mt4r_addsessionid() |>
+                 calculate_time_spent(time_units = "years")
+  )
+})
+
+test_that("calculate_time_spent returns expected time differences", {
+  test_data <- data.frame(
+    session_id = c(1, 1, 2, 2),
+    event_timestamp2 = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:30",
+                                    "2021-01-01 00:00:00", "2021-01-01 00:01:00"))
+    )
+
+  expected_data <- data.frame(
+    session_id = c(1, 2),
+    min_time = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:00")),
+    max_time = as.POSIXct(c("2021-01-01 00:00:30", "2021-01-01 00:01:00"))
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "secs") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(30, 60),
+        time_units = "secs"
+      )
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "mins") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(0.5, 1),
+        time_units = "mins"
+      )
+  )
+
+})
+
+
+test_that("calculate_time_spent returns expected time differences vol 2", {
+  test_data <- data.frame(
+    session_id = c(1, 1, 2, 2),
+    event_timestamp2 = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 01:00:00",
+                                    "2021-01-01 00:00:00", "2021-01-01 00:30:00"))
+  )
+
+  expected_data <- data.frame(
+    session_id = c(1, 2),
+    min_time = as.POSIXct(c("2021-01-01 00:00:00", "2021-01-01 00:00:00")),
+    max_time = as.POSIXct(c("2021-01-01 01:00:00", "2021-01-01 00:30:00"))
+  )
+
+  expect_equal(
+    object = calculate_time_spent(test_data, time_units = "hours") |>
+      as.data.frame(),
+    expected = expected_data |>
+      dplyr::mutate(
+        time_spent = c(1, 0.5),
+        time_units = "hours"
+      )
+  )
+
 })

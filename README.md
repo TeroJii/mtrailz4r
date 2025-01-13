@@ -32,11 +32,11 @@ remotes::install_github(repo = "TeroJii/mtrailz4r")
 ```
 
 Use the release tags to install a specific version. For example to
-install version 0.0.2:
+install version 0.0.4:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.2")
+remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.4")
 ```
 
 ## Example
@@ -51,8 +51,6 @@ mockdata |>
   mt4r_fixtime() |> 
   mt4r_addsessionid() |> 
   plot_exertime()
-#> Don't know how to automatically pick scale for object of type <difftime>.
-#> Defaulting to continuous.
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
