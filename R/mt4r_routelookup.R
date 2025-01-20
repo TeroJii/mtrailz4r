@@ -1,4 +1,10 @@
 mt4r_routelookup <- function(dat){
+
+  stopifnot(is.data.frame(dat))
+  stopifnot("row_id" %in% names(dat))
+  stopifnot("event_name" %in% names(dat))
+  stopifnot("event_timestamp2" %in% names(dat))
+
   lookup_dat <- dat |>
     dplyr::group_by(row_id) |>
     dplyr::mutate(
