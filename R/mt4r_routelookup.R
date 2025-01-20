@@ -1,3 +1,20 @@
+#' Creating a lookup table for route starts
+#'
+#' This function creates a lookup table for route starts. It takes a data frame
+#' and returns a data frame with a running number for each route start.
+#'
+#' @param dat A data frame with columns row_id, event_name, and event_timestamp2
+#'
+#' @returns A data frame with columns row_id, has_route_started, and
+#' route_started_number
+#' @export
+#'
+#' @examples
+#' mockdata |>
+#'   mt4r_unnest() |>
+#'   mt4r_fixtime() |>
+#'   mt4r_addsessionid() |>
+#'   mt4r_routelookup()
 mt4r_routelookup <- function(dat){
 
   stopifnot(is.data.frame(dat))
@@ -7,10 +24,7 @@ mt4r_routelookup <- function(dat){
 
   lookup_dat <- dat |>
     dplyr::group_by(row_id) |>
-    dplyr::mutate(
-      has_route_started = any(event_name == "route_started"),
-      .after = event_timestamp2
-    ) |>
+    dplyr::mutate(has_route_started = any(event_name == "route_started")) |>
     dplyr::summarise(
       has_route_started = mean(has_route_started)
     ) |>
@@ -19,3 +33,6 @@ mt4r_routelookup <- function(dat){
 
   return(lookup_dat)
 }
+
+# Suppress "Undefined global functions or variables" R CMD check note
+event_name <- has_route_started <- NULL
