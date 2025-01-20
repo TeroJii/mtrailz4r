@@ -3,7 +3,10 @@
 #' This function creates a lookup table for route starts. It takes a data frame
 #' and returns a data frame with a running number for each route start.
 #'
-#' @param dat A data frame with columns row_id, event_name, and event_timestamp2
+#' @param dat A data frame with columns row_id, and event_name. The input
+#'  data.frame is created by the [mt4r_unnest()], [mt4r_fixtime()], and
+#'  mt4r_addsessionid() functions.
+#'
 #'
 #' @returns A data frame with columns row_id, has_route_started, and
 #' route_started_number
@@ -20,7 +23,6 @@ mt4r_routelookup <- function(dat){
   stopifnot(is.data.frame(dat))
   stopifnot("row_id" %in% names(dat))
   stopifnot("event_name" %in% names(dat))
-  stopifnot("event_timestamp2" %in% names(dat))
 
   lookup_dat <- dat |>
     dplyr::group_by(row_id) |>

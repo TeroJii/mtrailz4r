@@ -7,7 +7,9 @@
 mt4r_routelookup(dat)
 }
 \arguments{
-\item{dat}{A data frame with columns row_id, event_name, and event_timestamp2}
+\item{dat}{A data frame with columns row_id, and event_name. The input
+data.frame is created by the \code{\link[=mt4r_unnest]{mt4r_unnest()}}, \code{\link[=mt4r_fixtime]{mt4r_fixtime()}}, and
+mt4r_addsessionid() functions.}
 }
 \value{
 A data frame with columns row_id, has_route_started, and
