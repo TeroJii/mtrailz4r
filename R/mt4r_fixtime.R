@@ -14,7 +14,9 @@
 #' @export
 #'
 #' @examples
-#' # To be added
+#' mockdata |>
+#'   mt4r_unnest() |>
+#'   mt4r_fixtime()
 mt4r_fixtime <- function(dat){
 
   stopifnot(is.data.frame(dat))

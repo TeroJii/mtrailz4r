@@ -2,6 +2,8 @@
 
 export(mt4r_addsessionid)
 export(mt4r_fixtime)
+export(mt4r_routelookup)
+export(mt4r_routestarts)
 export(mt4r_unnest)
 export(plot_exertime)
 export(plot_popular)

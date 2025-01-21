@@ -22,5 +22,7 @@ represents time passed since the unix epoch in microseconds. This function
 converts the \code{event_timestamp} column into a datetime object.
 }
 \examples{
-# To be added
+mockdata |>
+  mt4r_unnest() |>
+  mt4r_fixtime()
 }

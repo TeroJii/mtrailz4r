@@ -19,5 +19,8 @@ This function adds a session_id column to the data.
 The session_id is a unique identifier for each session.
 }
 \examples{
-# To be added
+mockdata |>
+  mt4r_unnest() |>
+  mt4r_fixtime() |>
+  mt4r_addsessionid()
 }
