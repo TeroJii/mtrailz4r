@@ -19,9 +19,6 @@ The goal of mtrailz4r is to help with specific data processing steps…
 ## TO-DO
 
 - [ ] Consider adding a function for extracting user_properties
-- [ ] Add functions for visualization
-  - [x] Function for plotting most popular routes
-  - [x] Function for plotting time spent
 
 ## Installation
 
