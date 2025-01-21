@@ -10,6 +10,8 @@
 coverage](https://codecov.io/gh/TeroJii/mtrailz4r/branch/main/graph/badge.svg)](https://app.codecov.io/gh/TeroJii/mtrailz4r?branch=main)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+![GitHub
+Release](https://img.shields.io/github/v/release/TeroJii/mtrailz4r)
 <!-- badges: end -->
 
 The goal of mtrailz4r is to help with specific data processing steps…
@@ -32,11 +34,11 @@ remotes::install_github(repo = "TeroJii/mtrailz4r")
 ```
 
 Use the release tags to install a specific version. For example to
-install version 0.0.4:
+install version 0.0.5:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.4")
+remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.5")
 ```
 
 ## Example
