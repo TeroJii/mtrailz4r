@@ -69,4 +69,4 @@ mt4r_routestarts <- function(dat, route_lookup, filter_zero_data = TRUE){
 }
 
 # Suppress "Undefined global functions or variables" R CMD check note
-route_started_number <- event_params.value.string_value <- route_name <-  NULL
+route_started_number <- event_params.value.string_value <- route_name <- route_id <- NULL
