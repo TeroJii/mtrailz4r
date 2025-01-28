@@ -27,6 +27,16 @@ test_that("missing or erraneous data produces an error", {
   expect_error(mt4r_routestarts(NULL, lookup_dat))
   expect_error({mt4r_routestarts(mtcars, lookup_dat)})
   expect_error({mt4r_routestarts(1:5, lookup_dat)})
+  expect_error({
+    dat <- dat[, -which(names(dat) == "event_name")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
+  expect_error({
+    dat <- dat[, -which(names(dat) == "event_params.key")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
 })
 
 test_that("missing or erraneous data filtering parameter produces an error", {
