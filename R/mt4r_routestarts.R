@@ -35,6 +35,9 @@ mt4r_routestarts <- function(dat, route_lookup, filter_zero_data = TRUE){
   stopifnot("row_id" %in% names(dat))
   stopifnot("event_name" %in% names(dat))
   stopifnot("event_params.key" %in% names(dat))
+  stopifnot("event_params.value.string_value" %in% names(dat))
+  stopifnot("event_params.value.int_value" %in% names(dat))
+  stopifnot("session_id" %in% names(dat))
   stopifnot("route_started_number" %in% names(route_lookup))
   stopifnot(is.logical(filter_zero_data))
 
