@@ -19,8 +19,8 @@ numbers. Is created by the \code{\link[=mt4r_routelookup]{mt4r_routelookup()}} f
 started are removed from the data.}
 }
 \value{
-A data frame with the \code{route_started_number} and \code{route_name}
-columns added to the input data.
+A data frame with the \code{route_started_number}, \code{route_id} and
+\code{route_name} columns added to the input data.
 }
 \description{
 This function adds a running route start number to the data. Additionally,

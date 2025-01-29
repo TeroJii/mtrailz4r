@@ -27,6 +27,56 @@ test_that("missing or erraneous data produces an error", {
   expect_error(mt4r_routestarts(NULL, lookup_dat))
   expect_error({mt4r_routestarts(mtcars, lookup_dat)})
   expect_error({mt4r_routestarts(1:5, lookup_dat)})
+  expect_error({
+    dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_fixtime() |>
+      mt4r_addsessionid()
+
+    dat <- dat[, -which(names(dat) == "event_name")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
+  expect_error({
+    dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_fixtime() |>
+      mt4r_addsessionid()
+
+    dat <- dat[, -which(names(dat) == "event_params.key")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
+  expect_error({
+    dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_fixtime() |>
+      mt4r_addsessionid()
+
+    dat <- dat[, -which(names(dat) == "event_params.value.string_value")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
+  expect_error({
+    dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_fixtime() |>
+      mt4r_addsessionid()
+
+    dat <- dat[, -which(names(dat) == "event_params.value.int_value")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
+  expect_error({
+    dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_fixtime() |>
+      mt4r_addsessionid()
+
+    dat <- dat[, -which(names(dat) == "session_id")]
+
+    mt4r_routestarts(dat, lookup_dat)
+  })
 })
 
 test_that("missing or erraneous data filtering parameter produces an error", {
@@ -84,6 +134,7 @@ test_that("test data returns sane outputs", {
                    "route_started", "route_stopped"),
     event_params.key = c(rep("route_name", 2), "", rep("route_name", 8)),
     event_params.value.string_value = c("A", "A", "A", "B", "B", "C", "C", "D", "D", "E", "E"),
+    event_params.value.int_value = c(1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5),
     session_id = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
   )
 

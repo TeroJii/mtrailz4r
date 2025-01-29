@@ -13,8 +13,8 @@
 #' @param filter_zero_data A logical value. If TRUE, rows where a route has not
 #' started are removed from the data.
 #'
-#' @returns A data frame with the `route_started_number` and `route_name`
-#' columns added to the input data.
+#' @returns A data frame with the `route_started_number`, `route_id` and
+#' `route_name` columns added to the input data.
 #' @export
 #'
 #' @examples
@@ -33,6 +33,11 @@ mt4r_routestarts <- function(dat, route_lookup, filter_zero_data = TRUE){
   stopifnot(is.data.frame(dat))
   stopifnot(is.data.frame(route_lookup))
   stopifnot("row_id" %in% names(dat))
+  stopifnot("event_name" %in% names(dat))
+  stopifnot("event_params.key" %in% names(dat))
+  stopifnot("event_params.value.string_value" %in% names(dat))
+  stopifnot("event_params.value.int_value" %in% names(dat))
+  stopifnot("session_id" %in% names(dat))
   stopifnot("route_started_number" %in% names(route_lookup))
   stopifnot(is.logical(filter_zero_data))
 
@@ -46,21 +51,27 @@ mt4r_routestarts <- function(dat, route_lookup, filter_zero_data = TRUE){
   }
 
   routestart_dat <- routestart_dat |>
-    # get the route name per route_started event
     dplyr::mutate(
+      # get the route name per route_started event
       route_name = dplyr::if_else(
         event_name == "route_started" &
           event_params.key == "route_name",
         true = event_params.value.string_value,
-        false = NA_character_)
+        false = NA_character_),
+      # get the route_id per route_started event
+      route_id = dplyr::if_else(
+        event_name == "route_started" &
+          event_params.key == "route_id",
+        true = event_params.value.int_value,
+        false = NA)
     ) |>
     # populate route_name to all rows in the session
     dplyr::group_by(session_id, route_started_number) |>
-    tidyr::fill(route_name, .direction = "updown") |>
+    tidyr::fill(route_name, route_id, .direction = "updown") |>
     dplyr::ungroup()
 
   return(routestart_dat)
 }
 
 # Suppress "Undefined global functions or variables" R CMD check note
-route_started_number <- event_params.value.string_value <- route_name <-  NULL
+route_started_number <- event_params.value.string_value <- route_name <- route_id <- NULL
