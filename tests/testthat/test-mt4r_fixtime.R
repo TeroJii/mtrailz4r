@@ -47,3 +47,37 @@ test_that("correctly formatted data.frame has correct dimensions", {
     c(357, 12)
   )
 })
+
+test_that("correctly formatted data.frame has correct class", {
+  expect_s3_class(
+    mt4r_unnest(mockdata) |>
+      mt4r_addsessionid() |>
+      mt4r_fixtime(),
+    "data.frame"
+  )
+})
+
+test_that("events within session_id's appear in chronological order", {
+  expect_true(object = {
+    test_dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_addsessionid() |>
+      mt4r_fixtime() |>
+      #group by sessions
+      dplyr::group_by(session_id) |>
+      dplyr::filter(!is.na(session_id)) |>
+      # test for time differences between events (within session)
+      dplyr::mutate(
+        time_diff = difftime(
+          event_timestamp2,
+          lag(event_timestamp2),
+          units = "secs"
+        )
+      ) |>
+      # Remove NA values from first rows per session_id
+      dplyr::filter(!is.na(time_diff))
+
+    all(test_dat$time_diff >= 0)
+
+  })
+})

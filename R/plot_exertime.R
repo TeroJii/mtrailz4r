@@ -17,8 +17,8 @@
 #' @examples
 #' mockdata |>
 #'   mt4r_unnest() |>
-#'   mt4r_fixtime() |>
 #'   mt4r_addsessionid() |>
+#'   mt4r_fixtime() |>
 #'   plot_exertime()
 plot_exertime <- function(dat, time_units = c("mins", "secs", "hours","auto"),
                           col_fill = "#99ff99",

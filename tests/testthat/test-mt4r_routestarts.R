@@ -1,8 +1,8 @@
 test_that("missing or erraneous lookup data produces an error", {
   dat <- mockdata |>
     mt4r_unnest() |>
-    mt4r_fixtime() |>
-    mt4r_addsessionid()
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
 
   expect_error(mt4r_routestarts(dat))
   expect_error(mt4r_routestarts(dat, dat))
@@ -13,8 +13,8 @@ test_that("missing or erraneous lookup data produces an error", {
 test_that("missing or erraneous data produces an error", {
   dat <- mockdata |>
     mt4r_unnest() |>
-    mt4r_fixtime() |>
-    mt4r_addsessionid()
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
 
   lookup_dat <- dat |>
     mt4r_routelookup()
@@ -30,8 +30,8 @@ test_that("missing or erraneous data produces an error", {
   expect_error({
     dat <- mockdata |>
       mt4r_unnest() |>
-      mt4r_fixtime() |>
-      mt4r_addsessionid()
+      mt4r_addsessionid() |>
+      mt4r_fixtime()
 
     dat <- dat[, -which(names(dat) == "event_name")]
 
@@ -40,8 +40,8 @@ test_that("missing or erraneous data produces an error", {
   expect_error({
     dat <- mockdata |>
       mt4r_unnest() |>
-      mt4r_fixtime() |>
-      mt4r_addsessionid()
+      mt4r_addsessionid() |>
+      mt4r_fixtime()
 
     dat <- dat[, -which(names(dat) == "event_params.key")]
 
@@ -50,8 +50,8 @@ test_that("missing or erraneous data produces an error", {
   expect_error({
     dat <- mockdata |>
       mt4r_unnest() |>
-      mt4r_fixtime() |>
-      mt4r_addsessionid()
+      mt4r_addsessionid() |>
+      mt4r_fixtime()
 
     dat <- dat[, -which(names(dat) == "event_params.value.string_value")]
 
@@ -60,8 +60,8 @@ test_that("missing or erraneous data produces an error", {
   expect_error({
     dat <- mockdata |>
       mt4r_unnest() |>
-      mt4r_fixtime() |>
-      mt4r_addsessionid()
+      mt4r_addsessionid() |>
+      mt4r_fixtime()
 
     dat <- dat[, -which(names(dat) == "event_params.value.int_value")]
 
@@ -70,8 +70,8 @@ test_that("missing or erraneous data produces an error", {
   expect_error({
     dat <- mockdata |>
       mt4r_unnest() |>
-      mt4r_fixtime() |>
-      mt4r_addsessionid()
+      mt4r_addsessionid() |>
+      mt4r_fixtime()
 
     dat <- dat[, -which(names(dat) == "session_id")]
 
@@ -82,8 +82,8 @@ test_that("missing or erraneous data produces an error", {
 test_that("missing or erraneous data filtering parameter produces an error", {
   dat <- mockdata |>
     mt4r_unnest() |>
-    mt4r_fixtime() |>
-    mt4r_addsessionid()
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
 
   lookup_dat <- dat |>
     mt4r_routelookup()
@@ -97,8 +97,8 @@ test_that("missing or erraneous data filtering parameter produces an error", {
 test_that("function output is a tibble", {
   dat <- mockdata |>
     mt4r_unnest() |>
-    mt4r_fixtime() |>
-    mt4r_addsessionid()
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
 
   lookup_dat <- dat |>
     mt4r_routelookup()
@@ -111,8 +111,8 @@ test_that("function output is a tibble", {
 test_that("lookup data contains same route start numbers as output data", {
   dat <- mockdata |>
     mt4r_unnest() |>
-    mt4r_fixtime() |>
-    mt4r_addsessionid()
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
 
   lookup_dat <- dat |>
     mt4r_routelookup()
@@ -120,7 +120,7 @@ test_that("lookup data contains same route start numbers as output data", {
   routestart_dat <- mt4r_routestarts(dat, lookup_dat, filter_zero_data = FALSE)
 
   expect_equal(
-    unique(routestart_dat$route_started_number),
+    sort(unique(routestart_dat$route_started_number)),
     unique(lookup_dat$route_started_number)
   )
 })

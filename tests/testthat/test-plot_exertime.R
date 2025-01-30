@@ -17,63 +17,63 @@ test_that("missing session_id column returns an error", {
 test_that("non-character column fill color returns an error", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  plot_exertime(col_fill = 1))
 })
 
 test_that("non-character column color returns an error", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  plot_exertime(col_color = 1))
 })
 
 test_that("alpha_val above 1 returns an error", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  plot_exertime(alpha_val = 2))
 })
 
 test_that("alpha_val below 0 returns an error", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  plot_exertime(alpha_val = -1))
 })
 
 test_that("plot_exertime returns a ggplot object", {
   expect_s3_class(mockdata |>
                     mt4r_unnest() |>
-                    mt4r_fixtime() |>
                     mt4r_addsessionid() |>
+                    mt4r_fixtime() |>
                     plot_exertime(), "gg")
 })
 
 test_that("erraneous time_units returns an error", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  plot_exertime(time_units = "days"))
 })
 
 test_that("calculate_time_spent returns same amount of observations as the number of session_id's in the input data.frame", {
   expect_equal(object = mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  calculate_time_spent(time_units = "mins") |>
                  nrow(),
                expected = {
                  dat <-  mockdata |>
                    mt4r_unnest() |>
-                   mt4r_fixtime() |>
-                   mt4r_addsessionid()
+                   mt4r_addsessionid() |>
+                   mt4r_fixtime()
 
                  dat$session_id |>
                    unique() |>
@@ -85,8 +85,8 @@ test_that("calculate_time_spent returns same amount of observations as the numbe
 test_that("calculate_time_spent errors if time_units is not one of c(\"auto\", \"secs\", \"mins\", \"hours\",\"days\", \"weeks\")", {
   expect_error(mockdata |>
                  mt4r_unnest() |>
-                 mt4r_fixtime() |>
                  mt4r_addsessionid() |>
+                 mt4r_fixtime() |>
                  calculate_time_spent(time_units = "years")
   )
 })

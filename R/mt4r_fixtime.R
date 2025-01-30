@@ -6,7 +6,7 @@
 #'
 #' @param dat A data frame with the following columns: event_timestamp,
 #' event_params.value.int_value, event_params.value.double_value. The input
-#' data.frame is created by the [mt4r_unnest()] and optionally modified by the
+#' data.frame is created by the [mt4r_unnest()] and modified by the
 #' [mt4r_addsessionid()] function.
 #'
 #' @return A data frame with the `event_timestamp` column converted into a
@@ -16,6 +16,7 @@
 #' @examples
 #' mockdata |>
 #'   mt4r_unnest() |>
+#'   mt4r_addsessionid() |>
 #'   mt4r_fixtime()
 mt4r_fixtime <- function(dat){
 
@@ -26,6 +27,10 @@ mt4r_fixtime <- function(dat){
       "event_params.value.int_value" %in% colnames(dat) &&
       "event_params.value.double_value" %in% colnames(dat)
   )
+  if(!("session_id" %in% colnames(dat))){
+    stop("Column with the name 'session_id' not found.
+         Please run the mt4r_addsessionid() function first.")
+  }
 
 
   fixed_dat <- dat |>
@@ -43,7 +48,10 @@ mt4r_fixtime <- function(dat){
         event_timestamp / (1000*1000)
         ),
       .after = event_timestamp
-    )
+    ) |>
+    dplyr::group_by(session_id) |>
+    dplyr::arrange(event_timestamp2) |>
+    dplyr::ungroup()
 
   return(fixed_dat)
 }

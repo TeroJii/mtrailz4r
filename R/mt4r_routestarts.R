@@ -20,8 +20,8 @@
 #' @examples
 #' dat <- mockdata |>
 #'   mt4r_unnest() |>
-#'   mt4r_fixtime() |>
-#'   mt4r_addsessionid()
+#'   mt4r_addsessionid() |>
+#'   mt4r_fixtime()
 #'
 #'  lookup_dat <- dat |>
 #'   mt4r_routelookup()

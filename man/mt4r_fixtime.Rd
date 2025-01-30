@@ -9,7 +9,7 @@ mt4r_fixtime(dat)
 \arguments{
 \item{dat}{A data frame with the following columns: event_timestamp,
 event_params.value.int_value, event_params.value.double_value. The input
-data.frame is created by the \code{\link[=mt4r_unnest]{mt4r_unnest()}} and optionally modified by the
+data.frame is created by the \code{\link[=mt4r_unnest]{mt4r_unnest()}} and modified by the
 \code{\link[=mt4r_addsessionid]{mt4r_addsessionid()}} function.}
 }
 \value{
@@ -24,5 +24,6 @@ converts the \code{event_timestamp} column into a datetime object.
 \examples{
 mockdata |>
   mt4r_unnest() |>
+  mt4r_addsessionid() |>
   mt4r_fixtime()
 }
