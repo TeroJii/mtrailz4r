@@ -22,7 +22,7 @@ and returns a data frame with a running number for each route start.
 \examples{
 mockdata |>
   mt4r_unnest() |>
-  mt4r_fixtime() |>
   mt4r_addsessionid() |>
+  mt4r_fixtime() |>
   mt4r_routelookup()
 }

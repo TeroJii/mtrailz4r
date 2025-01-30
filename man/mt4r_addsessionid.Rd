@@ -21,6 +21,5 @@ The session_id is a unique identifier for each session.
 \examples{
 mockdata |>
   mt4r_unnest() |>
-  mt4r_fixtime() |>
   mt4r_addsessionid()
 }
