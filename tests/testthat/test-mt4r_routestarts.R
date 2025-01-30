@@ -120,7 +120,7 @@ test_that("lookup data contains same route start numbers as output data", {
   routestart_dat <- mt4r_routestarts(dat, lookup_dat, filter_zero_data = FALSE)
 
   expect_equal(
-    unique(routestart_dat$route_started_number),
+    sort(unique(routestart_dat$route_started_number)),
     unique(lookup_dat$route_started_number)
   )
 })
