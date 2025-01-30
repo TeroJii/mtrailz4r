@@ -48,7 +48,10 @@ mt4r_fixtime <- function(dat){
         event_timestamp / (1000*1000)
         ),
       .after = event_timestamp
-    )
+    ) |>
+    dplyr::group_by(session_id) |>
+    dplyr::arrange(event_timestamp2) |>
+    dplyr::ungroup()
 
   return(fixed_dat)
 }
