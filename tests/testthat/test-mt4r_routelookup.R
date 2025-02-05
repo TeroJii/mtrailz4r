@@ -84,3 +84,26 @@ test_that("route_start_number is a running number", {
 
   expect_equal(unique(lookup_dat$route_started_number), 0:max(lookup_dat$route_started_number))
 })
+
+test_that("the maximum route_started_number equals the amount of route starts in data", {
+  lookup_dat <- mockdata |>
+    mt4r_unnest() |>
+    mt4r_addsessionid() |>
+    mt4r_fixtime() |>
+    mt4r_routelookup()
+
+  ref_dat <- mockdata |>
+    mt4r_unnest() |>
+    mt4r_addsessionid() |>
+    mt4r_fixtime()
+
+  num_unique_route_starts <- ref_dat |>
+    dplyr::group_by(row_id) |>
+    dplyr::summarise(
+      has_route_start = any(event_name == "route_started")
+    ) |>
+    dplyr::pull(has_route_start) |>
+    sum()
+
+  expect_equal(max(lookup_dat$route_started_number), num_unique_route_starts)
+})

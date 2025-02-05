@@ -22,16 +22,20 @@ mt4r_routelookup <- function(dat){
 
   stopifnot(is.data.frame(dat))
   stopifnot("row_id" %in% names(dat))
+  stopifnot("session_id" %in% names(dat))
   stopifnot("event_name" %in% names(dat))
+  stopifnot("event_timestamp2" %in% names(dat))
 
   lookup_dat <- dat |>
-    dplyr::group_by(row_id) |>
+    dplyr::group_by(row_id, session_id, event_name, event_timestamp2) |>
     dplyr::mutate(has_route_started = any(event_name == "route_started")) |>
     dplyr::summarise(
       has_route_started = mean(has_route_started)
     ) |>
+    dplyr::ungroup() |>
+    dplyr::arrange(session_id, event_timestamp2) |>
     dplyr::mutate(route_started_number = cumsum(has_route_started)) |>
-    dplyr::ungroup()
+    dplyr::select(row_id, route_started_number)
 
   return(lookup_dat)
 }
