@@ -31,11 +31,11 @@ remotes::install_github(repo = "TeroJii/mtrailz4r")
 ```
 
 Use the release tags to install a specific version. For example to
-install version 0.0.8:
+install version 0.0.9:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.8")
+remotes::install_github(repo = "TeroJii/mtrailz4r@v0.0.9")
 ```
 
 ## Example
