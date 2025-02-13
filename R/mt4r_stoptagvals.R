@@ -44,3 +44,6 @@ mt4r_stoptagvals <- function(dat){
 
   return(route_stop_tag_values)
 }
+
+# Suppress "Undefined global functions or variables" R CMD check note
+engagement_time <- route_pois_finished <- NULL
