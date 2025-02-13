@@ -63,3 +63,17 @@ test_that("function throws error if correct column names are not present", {
     mtcars |> mt4r_stoptagvals()
   )
 })
+
+test_that("A warning is issued if route_id is missing", {
+  expect_warning(
+    {dat <- mockdata |>
+      mt4r_unnest() |>
+      mt4r_addsessionid() |>
+      mt4r_fixtime() |>
+      dplyr::mutate(event_params.key = dplyr::if_else(event_params.key == "route_id", NA, event_params.key))
+
+
+    dat |>
+      mt4r_stoptagvals()
+    })
+})
