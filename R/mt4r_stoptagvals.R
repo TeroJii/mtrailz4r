@@ -42,6 +42,13 @@ mt4r_stoptagvals <- function(dat){
     dplyr::select(row_id, session_id, event_name, route_id, engagement_time, route_pois_finished) |>
     unique.data.frame()
 
+  # warn if there are missing values for route_id, engagement_time, or route_pois_finished
+  if(any(is.na(route_stop_tag_values$route_id)) |
+     any(is.na(route_stop_tag_values$engagement_time)) |
+     any(is.na(route_stop_tag_values$route_pois_finished))){
+    warning("Some route_stopped events are missing route_id, engagement_time, or route_pois_finished values.")
+  }
+
   return(route_stop_tag_values)
 }
 
